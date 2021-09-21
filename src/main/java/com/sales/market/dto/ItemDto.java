@@ -1,11 +1,13 @@
 package com.sales.market.dto;
 
 import com.sales.market.model.Item;
+import com.sales.market.model.SubCategory;
 
 public class ItemDto extends DtoBase<Item> {
     private String name;
     private String code;
     private Byte[] image;
+    private Long subCategoryId;
 
     public String getName() {
         return name;
@@ -29,5 +31,13 @@ public class ItemDto extends DtoBase<Item> {
 
     public void setImage(Byte[] image) {
         this.image = image;
+    }
+
+    public Long getSubCategoryId() {
+        return subCategoryId;
+    }
+
+    public void setSubCategoryId(Long subCategoryId) {
+        this.subCategoryId = subCategoryId;
     }
 }

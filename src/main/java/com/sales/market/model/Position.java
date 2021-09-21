@@ -10,7 +10,12 @@ import javax.persistence.Entity;
 @Entity
 public class Position extends ModelBase {
     private String name;
+    public Position() {
 
+    }
+    public Position(String name) {
+        this.name = name;
+    }
     public String getName() {
         return name;
     }

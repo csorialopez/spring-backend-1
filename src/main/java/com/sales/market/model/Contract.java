@@ -4,20 +4,22 @@
 
 package com.sales.market.model;
 
+import com.sales.market.dto.ContractDto;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import java.util.Date;
 
 @Entity
-public class Contract extends ModelBase {
+public class Contract extends ModelBase<ContractDto> {
     @ManyToOne(optional = false)
     private Employee employee;
     @OneToOne(optional = true)
     private Position position;
     private Date initDate;
     private Date endDate;
-    private boolean isActive;
+    private boolean active;
 
     public Employee getEmployee() {
         return employee;
@@ -52,10 +54,10 @@ public class Contract extends ModelBase {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.active = active;
     }
 }

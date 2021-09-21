@@ -5,6 +5,7 @@ import com.sales.market.model.Employee;
 public class EmployeeDto extends DtoBase<Employee> {
     private String firstName;
     private String lastName;
+    private String email;
     private Byte[] image;
 
     public String getFirstName() {
@@ -21,6 +22,14 @@ public class EmployeeDto extends DtoBase<Employee> {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Byte[] getImage() {

@@ -4,8 +4,12 @@
 
 package com.sales.market.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Item extends ModelBase {
@@ -15,8 +19,11 @@ public class Item extends ModelBase {
     @OneToOne(targetEntity = SubCategory.class)
     private SubCategory subCategory;
 
-    @OneToOne(targetEntity = SubCategory.class)
-    private SubCategory subCategorySt2;
+    @OneToMany(
+            mappedBy = "item",
+            cascade = CascadeType.ALL
+    )
+    private List<Buy> buys = new ArrayList<>();
 
     public String getName() {
         return name;

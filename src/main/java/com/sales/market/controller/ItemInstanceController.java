@@ -23,4 +23,6 @@ public class ItemInstanceController extends GenericController<ItemInstance, Item
     protected ItemInstanceService getService() {
         return service;
     }
+
+    // metodo para devolver itemInstances de acuerdo a un item
 }

@@ -5,6 +5,7 @@
 package com.sales.market.service;
 
 import com.sales.market.dto.DtoBase;
+import com.sales.market.model.ItemInstance;
 import com.sales.market.model.ModelBase;
 import com.sales.market.repository.GenericRepository;
 import com.sales.market.repository.specifications.GenericSpecificationsBuilder;

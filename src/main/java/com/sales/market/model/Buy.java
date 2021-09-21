@@ -7,21 +7,41 @@ package com.sales.market.model;
 
 import com.sales.market.dto.BuyDto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Buy extends ModelBase<BuyDto> {
 
-    @Column(precision = 10, scale = 5)
-    private BigDecimal value;
+    private int quantity;
+    private BigDecimal totalCost;
 
-    public BigDecimal getValue() {
-        return value;
+    @ManyToOne
+    private Item item;
+
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(BigDecimal totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

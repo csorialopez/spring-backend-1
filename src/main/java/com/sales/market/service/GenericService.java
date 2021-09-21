@@ -5,6 +5,7 @@
 package com.sales.market.service;
 
 import com.sales.market.dto.DtoBase;
+import com.sales.market.model.ItemInstance;
 import com.sales.market.model.ModelBase;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

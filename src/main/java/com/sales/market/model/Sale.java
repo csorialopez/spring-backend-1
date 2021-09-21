@@ -1,14 +1,12 @@
-/**
- * @author: Edson A. Terceros T.
- */
-
 package com.sales.market.model;
-
 
 import com.sales.market.dto.SaleDto;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Sale extends ModelBase<SaleDto> {
@@ -19,8 +17,15 @@ public class Sale extends ModelBase<SaleDto> {
     @Column(nullable = false)
     private Date date;
 
+    @OneToMany(mappedBy = "sale", fetch = FetchType.EAGER)
+    private Set<ItemInstance> itemInstanceSet = new HashSet<>();
+
+    private int quantityProduct;
+    private BigDecimal totalAmount;
     private String description;
-    private String image;
+
+    @OneToOne
+    private Client client;
 
     public Employee getEmployee() {
         return employee;
@@ -46,12 +51,35 @@ public class Sale extends ModelBase<SaleDto> {
         this.description = description;
     }
 
-    public String getImage() {
-        return image;
+    public Set<ItemInstance> getItemInstanceSet() {
+        return itemInstanceSet;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setItemInstanceSet(Set<ItemInstance> itemInstanceSet) {
+        this.itemInstanceSet = itemInstanceSet;
     }
 
+    public int getQuantityProduct() {
+        return quantityProduct;
+    }
+
+    public void setQuantityProduct(int quantityProduct) {
+        this.quantityProduct = quantityProduct;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }

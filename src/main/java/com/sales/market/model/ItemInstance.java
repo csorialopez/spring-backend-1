@@ -1,34 +1,41 @@
-/**
- * @author: Edson A. Terceros T.
- */
-
 package com.sales.market.model;
 
 import com.sales.market.dto.ItemInstanceDto;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "identifier")})
 public class ItemInstance extends ModelBase<ItemInstanceDto> {
+
     @OneToOne
     private Item item;
     private String identifier;// sku
 
     private Boolean featured = Boolean.FALSE;
 
-    // todo generalmente se usa BigDecimal
-    private Double price;
-    // todo estados AVAILABLE, SOLD, MAINTENANCE, ON_TRANSPORTATION
-    // private ItemInstanceState itemInstanceState;
-    // todo agregar totalCost
+    private BigDecimal purchaseBuy;
+    private BigDecimal sellingPrice;
 
     private ItemInstanceStatus itemInstanceStatus;
+
+    @ManyToOne
+    public Sale sale;
+
+    public ItemInstance(){}
+
+    public ItemInstance(Item item, String identifier,  BigDecimal purchaseBuy, BigDecimal sellingPrice, ItemInstanceStatus itemInstanceStatus) {
+        this.item = item;
+        this.identifier = identifier;
+        this.purchaseBuy = purchaseBuy;
+        this.sellingPrice = sellingPrice;
+        this.itemInstanceStatus = itemInstanceStatus;
+    }
 
     public Item getItem() {
         return item;
     }
-
     public void setItem(Item item) {
         this.item = item;
     }
@@ -36,31 +43,38 @@ public class ItemInstance extends ModelBase<ItemInstanceDto> {
     public String getIdentifier() {
         return identifier;
     }
-
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
     }
 
-    public Double getPrice() {
-        return price;
+    public BigDecimal getPurchaseBuy() {
+        return purchaseBuy;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setPurchaseBuy(BigDecimal purchaseBuy) {
+        this.purchaseBuy = purchaseBuy;
+    }
+
+    public BigDecimal getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public void setSellingPrice(BigDecimal sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 
     public Boolean getFeatured() {
         return featured;
     }
-
     public void setFeatured(Boolean featured) {
         this.featured = featured;
     }
 
-    /*@Override
-    public ModelBase toDomain(ItemInstanceDto element, ModelMapper mapper) {
-        super.toDomain(element, mapper);
-        setItem((Item) new Item().toDomain(element.getItemDto(), mapper));
-        return this;
-    }*/
+    public ItemInstanceStatus getItemInstanceStatus() {
+        return itemInstanceStatus;
+    }
+
+    public void setItemInstanceStatus(ItemInstanceStatus itemInstanceStatus) {
+        this.itemInstanceStatus = itemInstanceStatus;
+    }
 }
