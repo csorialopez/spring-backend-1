@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ItemInstanceServiceImpl extends GenericServiceImpl<ItemInstance> implements ItemInstanceService {
@@ -56,5 +58,15 @@ public class ItemInstanceServiceImpl extends GenericServiceImpl<ItemInstance> im
     @Override
     public ItemInstance getItemInstanceByIdentifier(String identifier) {
         return repository.findByIdentifier(identifier);
+    }
+
+    @Override
+    public Set<ItemInstance> getItemInstancesListByIdItem(Long idItem) {
+        List<ItemInstance> items = repository.findAllByItem_Id(idItem);
+        Set<ItemInstance> list = new HashSet<>();
+        items.forEach(itemInstance -> {
+            list.add(itemInstance);
+        });
+        return list;
     }
 }
